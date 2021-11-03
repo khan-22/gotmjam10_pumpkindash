@@ -82,7 +82,8 @@ __meta__ = {
 [node name="BulletLine" type="Line2D" parent="Level" groups=[
 "bullet_lines",
 ]]
-points = PoolVector2Array( 64, 104, 64, 248 )
+visible = false
+points = PoolVector2Array( 64, 88, 64, 248 )
 width = 1.0
 
 [node name="Witch" parent="Level" instance=ExtResource( 3 )]
