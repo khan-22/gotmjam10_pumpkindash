@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const SPEED = 70
+const SPEED = 90
 
 func _ready():
 	pass

@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://sprites/concept/concept.png" type="Texture" id=1]
 [ext_resource path="res://sprites/world/path_vertical.png" type="Texture" id=2]
 [ext_resource path="res://scenes/witch.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/world/obstacle_spawner.gd" type="Script" id=6]
+[ext_resource path="res://scenes/world/groundscroller.gd" type="Script" id=7]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -11,26 +13,22 @@ code = "shader_type canvas_item;
 uniform float scroll_speed;
 
 void fragment() {
-	vec2 new_uv = vec2(UV.x, UV.y + TIME * scroll_speed);
+	float normalized_speed = scroll_speed * TEXTURE_PIXEL_SIZE.y;
+	vec2 new_uv = vec2(UV.x, UV.y + TIME * normalized_speed);
 	vec4 sample = texture(TEXTURE, new_uv);
 	COLOR = sample;
 }
-
-//void fragment() {
-//	vec2 new_uv = vec2(UV.x, UV.y + TIME * scroll_speed);
-//	vec4 sample = texture(TEXTURE, new_uv);
-//	COLOR = sample;
-//}"
+"
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
-shader_param/scroll_speed = 0.5
+shader_param/scroll_speed = 64.0
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 16, 96 )
+extents = Vector2( 16, 88 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 16, 96 )
+extents = Vector2( 16, 88 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 104, 16 )
@@ -67,14 +65,7 @@ margin_left = -128.0
 margin_right = 128.0
 texture = ExtResource( 2 )
 stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="BlackTopBar" type="ColorRect" parent="Level/Control"]
-anchor_right = 1.0
-margin_bottom = 80.0
-color = Color( 0, 0, 0, 1 )
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -86,18 +77,14 @@ visible = false
 points = PoolVector2Array( 64, 88, 64, 248 )
 width = 1.0
 
-[node name="Witch" parent="Level" instance=ExtResource( 3 )]
-position = Vector2( 240, 45 )
-
 [node name="StaticBody2D" type="StaticBody2D" parent="Level"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/StaticBody2D"]
-position = Vector2( 152, 168 )
+position = Vector2( 152, 176 )
 shape = SubResource( 3 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/StaticBody2D"]
-position = Vector2( 328, 168 )
+position = Vector2( 328, 176 )
 shape = SubResource( 4 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Level/StaticBody2D"]
@@ -105,8 +92,35 @@ position = Vector2( 240, 280 )
 shape = SubResource( 5 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Level/StaticBody2D"]
-position = Vector2( 240, 64 )
+position = Vector2( 240, 72 )
 shape = SubResource( 6 )
 
-[node name="Player" parent="Level" instance=ExtResource( 4 )]
-position = Vector2( 240, 160 )
+[node name="YSort" type="YSort" parent="Level"]
+
+[node name="Player" parent="Level/YSort" instance=ExtResource( 4 )]
+position = Vector2( 240, 168 )
+
+[node name="ObstacleSpawner" type="YSort" parent="Level/YSort"]
+position = Vector2( 240, 312 )
+script = ExtResource( 6 )
+
+[node name="SpawnOrigin" type="Position2D" parent="Level/YSort/ObstacleSpawner"]
+position = Vector2( -64, -8 )
+
+[node name="Control2" type="Control" parent="Level"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlackTopBar" type="ColorRect" parent="Level/Control2"]
+anchor_right = 1.0
+margin_bottom = 80.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Witch" parent="Level" instance=ExtResource( 3 )]
+position = Vector2( 240, 45 )
