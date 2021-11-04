@@ -77,24 +77,6 @@ visible = false
 points = PoolVector2Array( 64, 88, 64, 248 )
 width = 1.0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Level"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/StaticBody2D"]
-position = Vector2( 152, 176 )
-shape = SubResource( 3 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/StaticBody2D"]
-position = Vector2( 328, 176 )
-shape = SubResource( 4 )
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Level/StaticBody2D"]
-position = Vector2( 240, 280 )
-shape = SubResource( 5 )
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Level/StaticBody2D"]
-position = Vector2( 240, 72 )
-shape = SubResource( 6 )
-
 [node name="YSort" type="YSort" parent="Level"]
 
 [node name="Player" parent="Level/YSort" instance=ExtResource( 4 )]
@@ -122,5 +104,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="StaticBody2D" type="StaticBody2D" parent="Level"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/StaticBody2D"]
+position = Vector2( 152, 176 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/StaticBody2D"]
+position = Vector2( 328, 176 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Level/StaticBody2D"]
+position = Vector2( 240, 280 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Level/StaticBody2D"]
+position = Vector2( 240, 72 )
+shape = SubResource( 6 )
+
 [node name="Witch" parent="Level" instance=ExtResource( 3 )]
 position = Vector2( 240, 45 )
+
+[node name="DebugCamera" type="Camera2D" parent="."]
+position = Vector2( 216, 104 )
+zoom = Vector2( 2, 2 )

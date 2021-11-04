@@ -10,7 +10,7 @@ func _ready():
 	
 func _physics_process(delta):
 	scroll_distance += delta * Global.vertical_scroll_speed
-	
+#	print(get_child_count())
 	if scroll_distance >= 16:
 		spawn_obstacle_row()
 		scroll_distance -= 16
@@ -23,7 +23,7 @@ func spawn_obstacle_row():
 		array.append(true if i < num else false)
 		
 	array.shuffle()
-	print(array)
+#	print(array)
 	var obstacle_position = $SpawnOrigin.global_position
 	for should_spawn in array:
 		if should_spawn:
@@ -35,3 +35,9 @@ func spawn_obstacle_row():
 		obstacle_position.x += 16 #Obstacle size
 	
 	
+
+
+func _on_ObstacleKillArea_body_entered(body):
+	body.queue_free()
+	print("kill")
+	pass # Replace with function body.

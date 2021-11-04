@@ -12,6 +12,7 @@ enum State {
 
 const INITIAL_SPEED = 150
 const MAX_CHARGE_TIME = 3.0
+const PLAYER_TARGET_Y_OFFSET = -8.0
 
 var simulated_position
 var velocity = Vector2(-INITIAL_SPEED, randf() * -60.0)
@@ -51,7 +52,7 @@ func calc_projected_player_position():
 	var pos1 = bullet_line.global_position + bullet_line.points[0]
 	var pos2 = bullet_line.global_position + bullet_line.points[1]
 
-	var player_t = (clamp(player.get_global_position().y, pos1.y, pos2.y) - pos1.y) / abs(pos2.y - pos1.y)
+	var player_t = (clamp(player.get_global_position().y + PLAYER_TARGET_Y_OFFSET, pos1.y, pos2.y) - pos1.y) / abs(pos2.y - pos1.y)
 
 #	var global_target_position = lerp(pos1, pos2, sin(time*1.7 + 3.0*randomness) * 0.5 + 0.5)
 	var global_target_position = lerp(pos1, pos2, player_t)
