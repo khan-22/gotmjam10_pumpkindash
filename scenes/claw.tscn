@@ -111,8 +111,8 @@ tracks/6/keys = {
 "times": PoolRealArray( 0.85 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [  ],
-"method": "trigger_bullet_spawn"
+"args": [ "bullet_spawn" ],
+"method": "emit_signal"
 } ]
 }
 
@@ -296,8 +296,8 @@ tracks/5/keys = {
 "times": PoolRealArray( 0.75 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [  ],
-"method": "trigger_bullet_spawn"
+"args": [ "bullet_spawn" ],
+"method": "emit_signal"
 } ]
 }
 tracks/6/type = "value"
@@ -341,12 +341,12 @@ tracks/8/keys = {
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.56311, 0.0, 0, 0 ]
 
 [node name="w_clawL" type="AnimatedSprite"]
-position = Vector2( -44, 9 )
-rotation = 0.162158
+position = Vector2( -39, 1.00001 )
 frames = SubResource( 6 )
 script = ExtResource( 2 )
 
 [node name="ClawAnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
 anims/FrontAttack = SubResource( 9 )
 anims/Idle = SubResource( 1 )
 anims/SETUP = SubResource( 2 )

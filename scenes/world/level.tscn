@@ -70,6 +70,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="FrontBulletOrigin" type="Position2D" parent="Level" groups=[
+"front_bullet_origin",
+]]
+position = Vector2( 176, 80 )
+
 [node name="BulletLine" type="Line2D" parent="Level" groups=[
 "bullet_lines",
 ]]
