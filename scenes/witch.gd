@@ -22,7 +22,7 @@ func _on_FireTimer_timeout():
 func fire_dual_side_attack():
 	is_firing = true
 	state_machine.travel("DualSideAttack")
-	yield($w_body/w_clawL, "side_bullet_spawn")
+	yield($w_body/w_clawL, "bullet_spawn")
 	var left_bullet = BulletSideDash.instance()
 	var right_bullet = BulletSideDash.instance()
 	

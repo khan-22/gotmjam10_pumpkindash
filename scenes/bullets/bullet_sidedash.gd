@@ -35,11 +35,21 @@ func _physics_process(delta):
 			simulated_position += velocity * delta
 
 			var follow_position = calc_projected_player_position()
+			
+			# Wobble
+			# "closeness to charge" is used to fade the wobble away before the charge
+			var closeness_to_charge = clamp(MAX_CHARGE_TIME + randomness - time, 0.0, 1.0)
+			var wobble = Vector2(0,0)
+			wobble.x = cos(time * 2.2) * 8.0 * closeness_to_charge
+			wobble.y = sin(time * 4.6 + randomness * 2.5) * 16.0 * closeness_to_charge
+			
+			follow_position += wobble
+			
 			follow_position.y = lerp(position.y, follow_position.y, 0.1)
 			position = lerp(simulated_position, follow_position, target_ease.interpolate(clamp((time*0.5 - 0.14), 0.0, 1.0)))
 			
 			#position = lerp(position, target_position, 0.01)
-			if time >= MAX_CHARGE_TIME:
+			if time >= MAX_CHARGE_TIME + randomness:
 				current_state = State.CHARGEDASH
 			
 		State.CHARGEDASH:
@@ -56,8 +66,6 @@ func calc_projected_player_position():
 
 #	var global_target_position = lerp(pos1, pos2, sin(time*1.7 + 3.0*randomness) * 0.5 + 0.5)
 	var global_target_position = lerp(pos1, pos2, player_t)
-	global_target_position.x += cos(time * 2.2) * 8.0
-	global_target_position.y += sin(time * 4.6 + randomness * 2.5) * 16.0
 
 	# Convert the position to coordinates relative to the bullet's space
 	# Which is to say, pretend that we're on the left side.
@@ -69,11 +77,6 @@ func calc_projected_player_position():
 func to_field_local(coord: Vector2):
 	return get_parent().get_parent().to_local(coord)
 	
-	
-	
-	
-	
-	
-	
-	
-	
+
+func _on_DamageArea_area_entered(area):
+	self.queue_free()

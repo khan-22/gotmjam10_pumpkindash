@@ -80,7 +80,7 @@ width = 1.0
 [node name="YSort" type="YSort" parent="Level"]
 
 [node name="Player" parent="Level/YSort" instance=ExtResource( 4 )]
-position = Vector2( 240, 168 )
+position = Vector2( 240, 176 )
 
 [node name="ObstacleSpawner" type="YSort" parent="Level/YSort"]
 position = Vector2( 240, 312 )
