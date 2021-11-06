@@ -5,7 +5,10 @@ onready var random_obstacle = preload("res://scenes/obstacles/random_obstacle.ts
 const MAX_NUM_OBSTACLES = 9
 var scroll_distance = 0
 
+onready var random_number_generator = RandomNumberGenerator.new()
+
 func _ready():
+	random_number_generator.randomize()
 	pass
 	
 func _physics_process(delta):
@@ -16,7 +19,7 @@ func _physics_process(delta):
 		scroll_distance -= 16
 	
 func spawn_obstacle_row():
-	var num = max(randi() % MAX_NUM_OBSTACLES - 5, 0)
+	var num = max(random_number_generator.randi() % MAX_NUM_OBSTACLES - 5, 0)
 	
 	var array = []
 	for i in range(MAX_NUM_OBSTACLES):
