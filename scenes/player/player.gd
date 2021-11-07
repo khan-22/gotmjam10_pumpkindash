@@ -55,6 +55,9 @@ func _physics_process(delta):
 func set_health(value: int):
 	health = value
 	
+	if health <= 0:
+		Events.emit_signal("game_over")
+	
 	for i in range(MAX_HEALTH):
 		$CanvasLayer/PlayerUI/HealthIconContainer.get_child(i).set_on(i < health)
 

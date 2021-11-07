@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/GotmJam10_intro_jingle_quick.ogg-d0c448254ef199c52b9b1ec3caf185aa.oggstr"
+
+[deps]
+
+source_file="res://sound/GotmJam10_intro_jingle_quick.ogg"
+dest_files=[ "res://.import/GotmJam10_intro_jingle_quick.ogg-d0c448254ef199c52b9b1ec3caf185aa.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

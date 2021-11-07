@@ -11,12 +11,13 @@ config_version=4
 [application]
 
 config/name="gotmjam10_escape"
-run/main_scene="res://scenes/world/level.tscn"
+run/main_scene="res://scenes/world/game.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Global="*res://global/global.gd"
+Events="*res://global/events.gd"
 
 [display]
 

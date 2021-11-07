@@ -1,6 +1,6 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=29 format=2]
 
-[ext_resource path="res://sprites/concept/concept.png" type="Texture" id=1]
+[ext_resource path="res://sound/GotmJam10_intro_jingle_quick.ogg" type="AudioStream" id=1]
 [ext_resource path="res://sprites/world/path_vertical.png" type="Texture" id=2]
 [ext_resource path="res://scenes/witch.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=4]
@@ -13,9 +13,210 @@
 [ext_resource path="res://sprites/ui/pressanykey.png" type="Texture" id=11]
 [ext_resource path="res://scenes/world/any_key_prompt.gd" type="Script" id=12]
 [ext_resource path="res://scenes/world/level.gd" type="Script" id=13]
+[ext_resource path="res://sound/GotmJam10_game_over.ogg" type="AudioStream" id=14]
+[ext_resource path="res://sprites/ui/gameover.png" type="Texture" id=15]
+[ext_resource path="res://sprites/ui/gameover_witch.png" type="Texture" id=16]
+[ext_resource path="res://scenes/world/game_over_witch.gd" type="Script" id=17]
 
 [sub_resource type="Animation" id=1]
-resource_name = "Intro"
+resource_name = "GameOver"
+length = 36.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("YSort/ObstacleSpawner:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("YSort/Player/Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "default" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("YSort/Player/Sprite:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("YSort/Player/Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("YSort/Player")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ false ],
+"method": "set_physics_process"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Witch:enabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "audio"
+tracks/6/path = NodePath("Music")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 14 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("MenuLayer/AnyKeyPrompt:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("YSort/Player/CanvasLayer/PlayerUI:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Witch:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 240, 44 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Witch:rotation_degrees")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("YSort/Player:position")
+tracks/11/interp = 2
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 1.1, 6.6, 8 ),
+"transitions": PoolRealArray( 1.93187, 0.5, 1 ),
+"update": 3,
+"values": [ Vector2( 240, 144 ), Vector2( 240, 144 ), Vector2( 240, -16 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Control/GroundScroller:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/13/type = "animation"
+tracks/13/path = NodePath("Witch/BodyAnimationPlayer")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"clips": PoolStringArray( "WitchWins" ),
+"times": PoolRealArray( 0 )
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("YSort/ObstacleSpawner:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("MenuLayer/GameOverItems:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0, 8.9, 11.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
 length = 20.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("IntroBackground:position")
@@ -209,7 +410,7 @@ tracks/14/keys = {
 "values": [ Color( 0.0784314, 0.0470588, 0.113725, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=3]
 resource_name = "Menu"
 length = 18.0
 loop = true
@@ -361,9 +562,215 @@ tracks/11/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/12/type = "value"
+tracks/12/path = NodePath("YSort/Player/Sprite:playing")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
-[sub_resource type="Animation" id=2]
-resource_name = "Setup"
+[sub_resource type="Animation" id=11]
+resource_name = "QuickIntro"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("IntroBackground:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4.5, 8.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 240, 208 ), Vector2( 240, 208 ), Vector2( 240, -48 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("IntroBackground:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("IntroBackground:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 4.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("YSort/ObstacleSpawner:enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 4.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("YSort/Player/Sprite:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 2, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ "grow", "grow", "run" ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("YSort/Player/Sprite:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("YSort/Player/Sprite:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 0 ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath("YSort/Player")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 4.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ false ],
+"method": "set_physics_process"
+}, {
+"args": [ true ],
+"method": "set_physics_process"
+} ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Witch:enabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 5.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/9/type = "audio"
+tracks/9/path = NodePath("Music")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 1 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 8 )
+} ],
+"times": PoolRealArray( 0, 4.5 )
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("MenuLayer/AnyKeyPrompt:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("YSort/Player/CanvasLayer/PlayerUI:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 4.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Witch:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 0.4, 2.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 240, -40 ), Vector2( 240, -40 ), Vector2( 240, 44 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Witch:rotation_degrees")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 0.4, 2.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 0.0 ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Witch/w_body:modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0.2, 2.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Color( 0.0784314, 0.0470588, 0.113725, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath("IntroBackground:position")
 tracks/0/interp = 1
@@ -436,8 +843,78 @@ tracks/5/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("Control/GroundScroller:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/7/type = "animation"
+tracks/7/path = NodePath("Witch/BodyAnimationPlayer")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"clips": PoolStringArray( "SETUP" ),
+"times": PoolRealArray( 0 )
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("YSort/ObstacleSpawner:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("YSort/ObstacleSpawner:enabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("MenuLayer/GameOverItems:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("YSort/Player:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 240, 144 ) ]
+}
 
-[sub_resource type="Shader" id=3]
+[sub_resource type="Shader" id=5]
 code = "shader_type canvas_item;
 
 uniform float scroll_speed;
@@ -450,66 +927,78 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
 shader_param/scroll_speed = 64.0
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 16, 88 )
-
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 16, 88 )
-
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 104, 16 )
+extents = Vector2( 16, 88 )
 
 [sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 16, 88 )
+
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 104, 16 )
 
-[node name="Node2D2" type="Node"]
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 104, 16 )
 
-[node name="path_vertical" type="Sprite" parent="."]
-visible = false
-position = Vector2( 224, 208 )
-texture = ExtResource( 2 )
-
-[node name="concept" type="Sprite" parent="."]
-position = Vector2( -77, 69 )
-texture = ExtResource( 1 )
-
-[node name="Level" type="Node" parent="."]
+[node name="Level" type="Node"]
 script = ExtResource( 13 )
 
-[node name="Music" type="AudioStreamPlayer" parent="Level"]
-stream = ExtResource( 8 )
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
 volume_db = -5.171
 
-[node name="MenuLayer" type="CanvasLayer" parent="Level"]
+[node name="MenuLayer" type="CanvasLayer" parent="."]
 
-[node name="AnyKeyPrompt" type="Sprite" parent="Level/MenuLayer"]
+[node name="AnyKeyPrompt" type="Sprite" parent="MenuLayer"]
 visible = false
 position = Vector2( 240, 192 )
 texture = ExtResource( 11 )
 script = ExtResource( 12 )
 
-[node name="Timer" type="Timer" parent="Level/MenuLayer/AnyKeyPrompt"]
+[node name="Timer" type="Timer" parent="MenuLayer/AnyKeyPrompt"]
 autostart = true
 
-[node name="CutscenePlayer" type="AnimationPlayer" parent="Level"]
-autoplay = "Menu"
-anims/Intro = SubResource( 1 )
-anims/Menu = SubResource( 9 )
-anims/Setup = SubResource( 2 )
-
-[node name="Control" type="Control" parent="Level"]
+[node name="GameOverItems" type="Control" parent="MenuLayer"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GroundScroller" type="TextureRect" parent="Level/Control"]
-material = SubResource( 4 )
+[node name="GameOverText" type="TextureRect" parent="MenuLayer/GameOverItems"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOverWitch" type="Sprite" parent="MenuLayer/GameOverItems"]
+position = Vector2( 344, 208 )
+texture = ExtResource( 16 )
+script = ExtResource( 17 )
+
+[node name="CutscenePlayer" type="AnimationPlayer" parent="."]
+autoplay = "Menu"
+anims/GameOver = SubResource( 1 )
+anims/Intro = SubResource( 2 )
+anims/Menu = SubResource( 3 )
+anims/QuickIntro = SubResource( 11 )
+anims/Setup = SubResource( 4 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GroundScroller" type="TextureRect" parent="Control"]
+material = SubResource( 6 )
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
@@ -522,50 +1011,50 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="IntroBackground" type="Sprite" parent="Level"]
+[node name="IntroBackground" type="Sprite" parent="."]
 position = Vector2( 240, 208 )
 texture = ExtResource( 5 )
 
-[node name="BulletLine" type="Line2D" parent="Level" groups=[
+[node name="BulletLine" type="Line2D" parent="." groups=[
 "bullet_lines",
 ]]
 visible = false
 points = PoolVector2Array( 64, 88, 64, 248 )
 width = 1.0
 
-[node name="PlayerResetPoint" type="Position2D" parent="Level" groups=[
+[node name="PlayerResetPoint" type="Position2D" parent="." groups=[
 "player_reset_point",
 ]]
 position = Vector2( 240, 176 )
 
-[node name="YSort" type="YSort" parent="Level"]
+[node name="YSort" type="YSort" parent="."]
 
-[node name="Player" parent="Level/YSort" instance=ExtResource( 4 )]
+[node name="Player" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 240, 144 )
 
-[node name="Sprite" parent="Level/YSort/Player" index="0"]
-animation = "grow"
-frame = 0
+[node name="Sprite" parent="YSort/Player" index="0"]
+animation = "default"
+frame = 1
 playing = false
 
-[node name="PlayerUI" parent="Level/YSort/Player/CanvasLayer" index="0"]
+[node name="PlayerUI" parent="YSort/Player/CanvasLayer" index="0"]
 visible = false
 
-[node name="ObstacleSpawner" type="YSort" parent="Level/YSort"]
+[node name="ObstacleSpawner" type="YSort" parent="YSort"]
 position = Vector2( 240, 312 )
 script = ExtResource( 6 )
 
-[node name="SpawnOrigin" type="Position2D" parent="Level/YSort/ObstacleSpawner"]
+[node name="SpawnOrigin" type="Position2D" parent="YSort/ObstacleSpawner"]
 position = Vector2( -64, -8 )
 
-[node name="Control2" type="Control" parent="Level"]
+[node name="Control2" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BlackTopBar" type="ColorRect" parent="Level/Control2"]
+[node name="BlackTopBar" type="ColorRect" parent="Control2"]
 anchor_right = 1.0
 margin_bottom = 80.0
 color = Color( 0, 0, 0, 1 )
@@ -573,37 +1062,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Level"]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 152, 176 )
-shape = SubResource( 5 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/StaticBody2D"]
-position = Vector2( 328, 176 )
-shape = SubResource( 6 )
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Level/StaticBody2D"]
-position = Vector2( 240, 280 )
 shape = SubResource( 7 )
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Level/StaticBody2D"]
-position = Vector2( 240, 72 )
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 328, 176 )
 shape = SubResource( 8 )
 
-[node name="Witch" parent="Level" instance=ExtResource( 3 )]
-position = Vector2( 240, -40 )
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 240, 280 )
+shape = SubResource( 9 )
 
-[node name="w_body" parent="Level/Witch" index="0"]
-modulate = Color( 0.0784314, 0.0470588, 0.113725, 1 )
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 240, 72 )
+shape = SubResource( 10 )
 
-[node name="DebugCamera" type="Camera2D" parent="."]
-position = Vector2( 216, 104 )
-zoom = Vector2( 2, 2 )
+[node name="Witch" parent="." instance=ExtResource( 3 )]
+position = Vector2( 240, 44 )
 
-[connection signal="timeout" from="Level/MenuLayer/AnyKeyPrompt/Timer" to="Level/MenuLayer/AnyKeyPrompt" method="_on_Timer_timeout"]
+[connection signal="timeout" from="MenuLayer/AnyKeyPrompt/Timer" to="MenuLayer/AnyKeyPrompt" method="_on_Timer_timeout"]
 
-[editable path="Level/YSort/Player"]
-[editable path="Level/Witch"]
-[editable path="Level/Witch/w_body/w_clawL"]
-[editable path="Level/Witch/w_body/clawR_pivot/w_clawR"]
+[editable path="YSort/Player"]
