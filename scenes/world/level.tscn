@@ -1034,7 +1034,7 @@ position = Vector2( 240, 144 )
 
 [node name="Sprite" parent="YSort/Player" index="0"]
 animation = "default"
-frame = 1
+frame = 0
 playing = false
 
 [node name="PlayerUI" parent="YSort/Player/CanvasLayer" index="0"]

@@ -13,6 +13,9 @@ var invincible: bool = false
 var blink_time: float = 0.0
 var blink_on: bool = true
 
+# Beg obstacle spawner for health
+var beg_timer = 0.0
+
 func _ready():
 	for i in range(MAX_HEALTH):
 		var icon = ui_playerhealthicon.instance()
@@ -32,6 +35,19 @@ func _physics_process(delta):
 		vel.y -= SPEED
 	if Input.is_action_pressed("down"):
 		vel.y += SPEED
+	
+	if health < MAX_HEALTH:
+		beg_timer += delta
+		if health == 1:
+			if beg_timer >= 5:
+				Events.emit_signal("spawn_health")
+				beg_timer -= 5
+		else:
+			if beg_timer >= 10:
+				Events.emit_signal("spawn_health")
+				beg_timer -= 10
+	else:
+		beg_timer = 0
 	
 	move_and_slide(vel)
 	
@@ -66,6 +82,13 @@ func is_being_crushed():
 
 func _on_DamageArea_area_entered(area):
 	do_take_damage()
+	
+func _on_PickupArea_area_entered(area):
+	match area.get_type():
+		"health":
+			self.health = clamp(self.health + 1, 0, MAX_HEALTH)
+			
+	area.queue_free()
 
 func do_take_damage():
 	if invincible:
@@ -91,3 +114,5 @@ func trigger_invincibility():
 	
 	self.invincible = false
 	
+
+

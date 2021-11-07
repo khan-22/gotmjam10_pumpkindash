@@ -16,6 +16,18 @@ func set_animation_speed(value: float):
 	animation_speed = value
 	$ClawAnimationPlayer.playback_speed = animation_speed
 
+func do_angry_fist():
+	$ClawAnimationPlayer.play("Angry1")
+	$ClawAnimationPlayer.queue(current_idle)
+	yield($ClawAnimationPlayer, "animation_changed")
+	emit_signal("attack_finished")
+	
+func do_angry_fist2():
+	$ClawAnimationPlayer.play("Angry2")
+	$ClawAnimationPlayer.queue(current_idle)
+	yield($ClawAnimationPlayer, "animation_changed")
+	emit_signal("attack_finished")
+	
 func do_side_attack(bullet_type: PackedScene, bullet_field: Node2D):
 	$ClawAnimationPlayer.play("SideAttack")
 	$ClawAnimationPlayer.queue(current_idle)
