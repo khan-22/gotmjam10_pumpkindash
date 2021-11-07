@@ -10,3 +10,7 @@ func _physics_process(delta):
 	
 	if global_position.y <= KILL_Y:
 		self.queue_free()
+
+func consume():
+	$CollisionShape2D.disabled = true
+	$AnimationPlayer.play("Pickup")

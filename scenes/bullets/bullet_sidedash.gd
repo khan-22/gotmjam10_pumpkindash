@@ -23,6 +23,7 @@ var current_state = State.INITIAL
 func initialize(spawn_position):
 	simulated_position = get_parent().to_local(spawn_position)
 	position = simulated_position
+	$AnimationRoot/AudioStreamPlayer2D.pitch_scale = 1.0 + (randomness * 0.2 - 0.1)
 
 func _physics_process(delta):
 	time += delta

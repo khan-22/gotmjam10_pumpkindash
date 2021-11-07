@@ -47,7 +47,8 @@ var pattern3 = [
 	"front_fire_dual",
 	2.0,
 	"side_skull_dual",
-	1.0
+	1.0,
+	"end_game"
 ]
 
 
@@ -104,7 +105,20 @@ func init_phase3():
 	
 	Events.emit_signal("start_phase3")
 
-
+func end_game():
+	$BodyAnimationPlayer.playback_speed = PATTTERN1_SPEED
+	left_claw.animation_speed = PATTTERN1_SPEED
+	right_claw.animation_speed = PATTTERN1_SPEED
+	
+	# Remove all bullets
+	for child in $BulletManager/LeftSide.get_children():
+		child.queue_free()
+	for child in $BulletManager/RightSide.get_children():
+		child.queue_free()
+	
+	Events.emit_signal("game_win")
+	enabled = false
+	yield(get_tree().create_timer(0.1), "timeout")
 
 func set_enabled(value: bool):
 	if enabled == value:

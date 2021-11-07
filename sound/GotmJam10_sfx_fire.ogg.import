@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/GotmJam10_sfx_fire.ogg-d1a8cae31123f8e205613458d3e16b9c.oggstr"
+
+[deps]
+
+source_file="res://sound/GotmJam10_sfx_fire.ogg"
+dest_files=[ "res://.import/GotmJam10_sfx_fire.ogg-d1a8cae31123f8e205613458d3e16b9c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

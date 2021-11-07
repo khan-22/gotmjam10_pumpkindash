@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/GotmJam10_sfx_health.ogg-bf6604ea6c152fa118302569d6ae08c4.oggstr"
+
+[deps]
+
+source_file="res://sound/GotmJam10_sfx_health.ogg"
+dest_files=[ "res://.import/GotmJam10_sfx_health.ogg-bf6604ea6c152fa118302569d6ae08c4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

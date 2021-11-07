@@ -1,27 +1,28 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://sprites/bullets/sidedashbullet.png" type="Texture" id=1]
 [ext_resource path="res://scenes/bullets/bullet_sidedash.gd" type="Script" id=2]
+[ext_resource path="res://sound/GotmJam10_sfx_skull_swoosh.ogg" type="AudioStream" id=3]
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 0 ), 0.0, -0.21912, 0, 0, Vector2( 1, 1 ), 0.00874414, 0.0, 0, 0 ]
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 64, 64 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ SubResource( 1 ) ],
+"frames": [ SubResource( 2 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 5, 5 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=5]
 resource_name = "Collision"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
@@ -60,8 +61,7 @@ tracks/2/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Dash"
+[sub_resource type="Animation" id=6]
 length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
@@ -125,9 +125,22 @@ tracks/4/keys = {
 "method": "queue_free"
 } ]
 }
+tracks/5/type = "audio"
+tracks/5/path = NodePath("AudioStreamPlayer2D")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 3 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
-[sub_resource type="Animation" id=6]
-resource_name = "SETUP"
+[sub_resource type="Animation" id=7]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
@@ -167,23 +180,26 @@ tracks/2/keys = {
 
 [node name="BulletSideDash" type="Node2D"]
 script = ExtResource( 2 )
-target_ease = SubResource( 4 )
+target_ease = SubResource( 1 )
 
 [node name="AnimationRoot" type="Node2D" parent="."]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="AnimationRoot"]
-frames = SubResource( 2 )
+frames = SubResource( 3 )
 
 [node name="DamageArea" type="Area2D" parent="AnimationRoot"]
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimationRoot/DamageArea"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationRoot"]
-anims/Collision = SubResource( 7 )
-anims/Dash = SubResource( 5 )
-anims/SETUP = SubResource( 6 )
+anims/Collision = SubResource( 5 )
+anims/Dash = SubResource( 6 )
+anims/SETUP = SubResource( 7 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationRoot"]
+stream = ExtResource( 3 )
 
 [connection signal="area_entered" from="AnimationRoot/DamageArea" to="." method="_on_DamageArea_area_entered"]

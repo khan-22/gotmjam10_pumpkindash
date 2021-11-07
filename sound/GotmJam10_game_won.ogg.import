@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/GotmJam10_game_won.ogg-d8d74d9b5351b5b6aafb22123045702d.oggstr"
+
+[deps]
+
+source_file="res://sound/GotmJam10_game_won.ogg"
+dest_files=[ "res://.import/GotmJam10_game_won.ogg-d8d74d9b5351b5b6aafb22123045702d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

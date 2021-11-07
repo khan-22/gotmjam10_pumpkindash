@@ -6,7 +6,7 @@ onready var player_reset_point = get_tree().get_nodes_in_group("player_reset_poi
 const SPEED = 90
 const MAX_HEALTH: int = 3
 const BLINK_PERIOD: float = 0.1
-const INVINCIBILITY_TIME: float = 4.0
+const INVINCIBILITY_TIME: float = 3.0
 
 var health: int = MAX_HEALTH setget set_health
 var invincible: bool = false
@@ -87,13 +87,14 @@ func _on_PickupArea_area_entered(area):
 	match area.get_type():
 		"health":
 			self.health = clamp(self.health + 1, 0, MAX_HEALTH)
+			area.consume()
 			
-	area.queue_free()
 
 func do_take_damage():
 	if invincible:
 		return
 	
+	$DamageSound.play()
 	trigger_invincibility()
 	self.health -= 1
 	
