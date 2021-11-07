@@ -1,15 +1,22 @@
 extends Node2D
 
+export(bool) var enabled = false
+
 #onready var state_machine = $AnimationTree["parameters/playback"] as AnimationNodeStateMachinePlayback
 onready var BulletSideDash = preload("res://scenes/bullets/bullet_sidedash.tscn")
 onready var BulletFrontFire = preload("res://scenes/bullets/bullet_frontfire.tscn")
 onready var left_claw = $w_body/w_clawL
 onready var right_claw = $w_body/clawR_pivot/w_clawR
-onready var front_bullet_origin = get_tree().get_nodes_in_group("front_bullet_origin")[0]
 
 var is_firing = false
 
 var current_idle = "Idle"
+
+enum State {
+	CALM,
+	AGGITATED,
+	RAGE
+}
 
 func _ready():
 #	$BodyAnimationPlayer.connect("animation_finished", self, "return_to_idle")
@@ -21,6 +28,9 @@ func _ready():
 
 var i: int = 0
 func _on_FireTimer_timeout():
+	if not enabled:
+		return
+	
 	if not is_firing:
 		match i % 3:
 			0: 

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Gotmjam10_intro_wind.ogg-25ccff51725eb22c3dff89405554e0d2.oggstr"
+
+[deps]
+
+source_file="res://sound/Gotmjam10_intro_wind.ogg"
+dest_files=[ "res://.import/Gotmjam10_intro_wind.ogg-25ccff51725eb22c3dff89405554e0d2.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

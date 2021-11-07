@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://sprites/witch/w_face.png" type="Texture" id=1]
 [ext_resource path="res://sprites/witch/w_body.png" type="Texture" id=2]
@@ -6,6 +6,46 @@
 [ext_resource path="res://sprites/witch/w_hat.png" type="Texture" id=4]
 [ext_resource path="res://scenes/witch.gd" type="Script" id=5]
 [ext_resource path="res://scenes/claw.tscn" type="PackedScene" id=6]
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 96, 64 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 4 )
+region = Rect2( 96, 0, 96, 64 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 4 )
+region = Rect2( 192, 0, 96, 64 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="Animation" id=5]
 resource_name = "DualSideAttack"
@@ -460,14 +500,14 @@ script = ExtResource( 5 )
 position = Vector2( 0.999985, 8.99999 )
 texture = ExtResource( 2 )
 
-[node name="w_face" type="Sprite" parent="w_body"]
+[node name="w_face" type="AnimatedSprite" parent="w_body"]
 position = Vector2( 1.52323e-05, -6.99999 )
-texture = ExtResource( 1 )
+frames = SubResource( 9 )
 
-[node name="w_hat" type="Sprite" parent="w_body/w_face"]
+[node name="w_hat" type="AnimatedSprite" parent="w_body/w_face"]
 position = Vector2( 3.52702e-08, -16 )
 z_index = 1
-texture = ExtResource( 4 )
+frames = SubResource( 13 )
 
 [node name="w_hat_tail" type="Sprite" parent="w_body/w_face/w_hat"]
 position = Vector2( -4, -9 )

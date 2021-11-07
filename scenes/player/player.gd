@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 const ui_playerhealthicon = preload("res://scenes/ui/ui_playerhealthicon.tscn")
+onready var player_reset_point = get_tree().get_nodes_in_group("player_reset_point")[0].global_position
 
 const SPEED = 90
 const MAX_HEALTH: int = 3
@@ -34,6 +35,10 @@ func _physics_process(delta):
 	
 	move_and_slide(vel)
 	
+	if is_being_crushed():
+		do_take_damage()
+		global_position = player_reset_point
+	
 	if invincible:
 		blink_time += delta
 		if blink_time >= BLINK_PERIOD:
@@ -43,12 +48,18 @@ func _physics_process(delta):
 		$Sprite.modulate.a = 1.0 if blink_on else 0.5
 	else:
 		$Sprite.modulate.a = 1.0
+	
+	$Sprite.animation = "run"
+	$Sprite.speed_scale = 1.0 + (vel.y / SPEED * 0.5) 
 
 func set_health(value: int):
 	health = value
 	
 	for i in range(MAX_HEALTH):
 		$CanvasLayer/PlayerUI/HealthIconContainer.get_child(i).set_on(i < health)
+
+func is_being_crushed():
+	return $Crushcast1.is_colliding() and $Crushcast2.is_colliding()
 
 func _on_DamageArea_area_entered(area):
 	do_take_damage()
