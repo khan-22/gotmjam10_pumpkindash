@@ -1,29 +1,96 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://sprites/witch/w_claw.png" type="Texture" id=1]
 [ext_resource path="res://scenes/claw.gd" type="Script" id=2]
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
 region = Rect2( 32, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
 region = Rect2( 64, 0, 32, 32 )
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=5]
+resource_name = "Angry1"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.9, 1, 1.1, 1.2, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 2.92817, 2.92817, 2.92817, 1 ),
+"update": 0,
+"values": [ Vector2( -39, 1.00001 ), Vector2( -52, -22 ), Vector2( -52, -22 ), Vector2( -54, 1 ), Vector2( -54, 1 ), Vector2( -54, 1 ), Vector2( -39, 1.00001 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 0.9, 1, 1.1, 1.2, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -7.0, -7.0, -6.0586, -6.0586, -6.0586, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("AngryParticles")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "restart"
+} ]
+}
+
+[sub_resource type="Animation" id=6]
 resource_name = "FrontAttack"
 length = 1.15
 step = 0.05
@@ -116,8 +183,7 @@ tracks/6/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "Idle"
+[sub_resource type="Animation" id=7]
 length = 1.3
 loop = true
 tracks/0/type = "value"
@@ -169,8 +235,7 @@ tracks/3/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "SETUP"
+[sub_resource type="Animation" id=8]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
@@ -220,8 +285,7 @@ tracks/3/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "SideAttack"
+[sub_resource type="Animation" id=9]
 length = 2.0
 step = 0.05
 tracks/0/type = "value"
@@ -337,20 +401,24 @@ tracks/8/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Curve" id=8]
+[sub_resource type="Curve" id=10]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.56311, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=11]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -3.43162, 0.0, 0, 0 ]
 
 [node name="w_clawL" type="AnimatedSprite"]
 position = Vector2( -39, 1.00001 )
-frames = SubResource( 6 )
+frames = SubResource( 4 )
 script = ExtResource( 2 )
 
 [node name="ClawAnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
-anims/FrontAttack = SubResource( 9 )
-anims/Idle = SubResource( 1 )
-anims/SETUP = SubResource( 2 )
-anims/SideAttack = SubResource( 7 )
+anims/Angry1 = SubResource( 5 )
+anims/FrontAttack = SubResource( 6 )
+anims/Idle = SubResource( 7 )
+anims/SETUP = SubResource( 8 )
+anims/SideAttack = SubResource( 9 )
 
 [node name="BulletSpawnPosition" type="Position2D" parent="."]
 position = Vector2( 0, 5.99999 )
@@ -371,7 +439,7 @@ initial_velocity_random = 0.45
 damping = 100.0
 scale_amount = 3.0
 scale_amount_random = 0.4
-scale_amount_curve = SubResource( 8 )
+scale_amount_curve = SubResource( 10 )
 
 [node name="FrontSpellParticles" type="CPUParticles2D" parent="."]
 position = Vector2( 0, 5.99999 )
@@ -390,4 +458,17 @@ initial_velocity_random = 0.29
 damping = 100.0
 scale_amount = 3.0
 scale_amount_random = 0.4
-scale_amount_curve = SubResource( 8 )
+scale_amount_curve = SubResource( 10 )
+
+[node name="AngryParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 21
+one_shot = true
+explosiveness = 0.91
+local_coords = false
+direction = Vector2( 0, -1 )
+spread = 90.0
+initial_velocity = 91.47
+damping = 82.74
+scale_amount = 5.0
+scale_amount_curve = SubResource( 11 )
