@@ -4,6 +4,7 @@ export(bool) var enabled = false setget set_enabled
 
 #onready var state_machine = $AnimationTree["parameters/playback"] as AnimationNodeStateMachinePlayback
 onready var BulletSideDash = preload("res://scenes/bullets/bullet_sidedash.tscn")
+onready var BulletSideCurve = preload("res://scenes/bullets/bullet_sidecurve.tscn")
 onready var BulletFrontFire = preload("res://scenes/bullets/bullet_frontfire.tscn")
 onready var left_claw = $w_body/w_clawL
 onready var right_claw = $w_body/clawR_pivot/w_clawR
@@ -20,23 +21,83 @@ const PATTTERN1_SPEED = 1.0
 const PATTTERN2_SPEED = 1.5
 const PATTTERN3_SPEED = 2.0
 
+#var pattern1 = [
+#	"side_curve_dual"
+#]
+
 var pattern1 = [
 	"side_skull_dual",
 	"front_fire_left",
 	"front_fire_right",
 	0.5,
 	"side_skull_dual",
+	"side_curve_dual",
 	"front_fire_dual",
 	"front_fire_dual",
 	"side_skull_dual",	
 	0.5,
+	# Repeat
+	"side_skull_dual",
+	"front_fire_left",
+	"front_fire_right",
+	0.5,
+	"side_skull_dual",
+	"side_curve_dual",
+	"front_fire_dual",
+	"front_fire_dual",
+	"side_skull_dual",	
+	"side_curve_dual",	
+	0.5,
+	"side_curve_dual",	
 	"init_phase2"
 ]
 
 var pattern2 = [
+	"front_fire_dual",
+	"side_skull_dual",
+	"front_fire_dual",
+	"front_fire_dual",
+	"side_curve_dual",	
+	"side_skull_dual",
+	"side_curve_dual",	
+	"side_skull_dual",
+	"side_curve_dual",
+	1.0,
+	"side_curve_dual",	
+	"side_curve_dual",	
+	"side_curve_dual",	
+	"front_fire_dual",
+	1.0,
 	"side_skull_dual",
 	"side_skull_dual",
+	"side_curve_dual",	
+	"side_curve_dual",
+	"front_fire_dual",
+	"front_fire_dual",
+	2.0,
+	#Repeat
+	"front_fire_dual",
 	"side_skull_dual",
+	"front_fire_dual",
+	"front_fire_dual",
+	"side_curve_dual",	
+	"side_skull_dual",
+	"side_curve_dual",	
+	"side_skull_dual",
+	"side_curve_dual",
+	1.0,
+	"side_curve_dual",	
+	"side_curve_dual",	
+	"side_curve_dual",	
+	"front_fire_dual",
+	1.0,
+	"side_skull_dual",
+	"side_skull_dual",
+	"side_curve_dual",	
+	"side_curve_dual",
+	"front_fire_dual",
+	"front_fire_dual",
+	2.0,
 	"init_phase3"
 ]
 
@@ -45,9 +106,53 @@ var pattern3 = [
 	"front_fire_dual",
 	"front_fire_dual",
 	"front_fire_dual",
-	2.0,
 	"side_skull_dual",
+	"side_skull_dual",
+	"side_curve_dual",	
+	"side_curve_dual",	
+	2.0,
+	"front_fire_dual",
+	"front_fire_dual",
+	"side_skull_dual",
+	"front_fire_dual",
+	"front_fire_dual",
+	"side_skull_dual",
+	"front_fire_dual",
+	"front_fire_dual",
+	"side_skull_dual",
+	"side_curve_dual",
 	1.0,
+	"front_fire_dual",
+	"side_skull_dual",
+	"front_fire_dual",
+	"front_fire_dual",
+	"side_skull_dual",
+	"side_curve_dual",
+	#REPEAT
+	"front_fire_dual",
+	"side_skull_dual",
+	"side_skull_dual",
+	"side_curve_dual",	
+	"side_curve_dual",	
+	2.0,
+	"front_fire_dual",
+	"front_fire_dual",
+	"side_skull_dual",
+	"front_fire_dual",
+	"front_fire_dual",
+	"side_skull_dual",
+	"front_fire_dual",
+	"front_fire_dual",
+	"side_skull_dual",
+	"side_curve_dual",
+	1.0,
+	"front_fire_dual",
+	"side_skull_dual",
+	"front_fire_dual",
+	"front_fire_dual",
+	"side_skull_dual",
+	"side_curve_dual",
+	5.0,
 	"end_game"
 ]
 
@@ -172,5 +277,12 @@ func side_skull_dual():
 	right_claw.do_side_attack(BulletSideDash, $BulletManager/RightSide)
 	yield(left_claw, "attack_finished")
 
+func side_curve_dual():
+	$BodyAnimationPlayer.play("DualSideAttack")
+	$BodyAnimationPlayer.queue(current_idle)
+	left_claw.do_side_attack(BulletSideCurve, $BulletManager/LeftSide)
+	right_claw.do_side_attack(BulletSideCurve, $BulletManager/RightSide)
+	yield(left_claw, "attack_finished")
+	yield(get_tree().create_timer(0.05), "timeout")
 
 ##########################
