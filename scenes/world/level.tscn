@@ -2,7 +2,7 @@
 
 [ext_resource path="res://sound/GotmJam10_intro_jingle_quick.ogg" type="AudioStream" id=1]
 [ext_resource path="res://sprites/world/path_vertical.png" type="Texture" id=2]
-[ext_resource path="res://scenes/witch.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/witch/witch.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://sprites/world/intro_background.png" type="Texture" id=5]
 [ext_resource path="res://scenes/world/obstacle_spawner.gd" type="Script" id=6]
@@ -218,7 +218,7 @@ tracks/15/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=2]
 resource_name = "GameWon"
 length = 26.0
 step = 0.05
@@ -431,7 +431,7 @@ tracks/16/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 length = 20.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("IntroBackground:position")
@@ -637,8 +637,7 @@ tracks/15/keys = {
 "values": [ false, true, false ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Menu"
+[sub_resource type="Animation" id=4]
 length = 18.0
 loop = true
 tracks/0/type = "value"
@@ -802,7 +801,7 @@ tracks/12/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=5]
 resource_name = "QuickIntro"
 length = 20.0
 tracks/0/type = "value"
@@ -997,7 +996,7 @@ tracks/14/keys = {
 "values": [ Color( 0.0784314, 0.0470588, 0.113725, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("IntroBackground:position")
 tracks/0/interp = 1
@@ -1165,7 +1164,7 @@ tracks/13/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Shader" id=5]
+[sub_resource type="Shader" id=7]
 code = "shader_type canvas_item;
 
 uniform float scroll_speed;
@@ -1178,20 +1177,20 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=6]
-shader = SubResource( 5 )
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
 shader_param/scroll_speed = 64.0
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 16, 88 )
-
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 16, 88 )
-
 [sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 104, 16 )
+extents = Vector2( 16, 88 )
 
 [sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 16, 88 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 104, 16 )
+
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 104, 16 )
 
 [node name="Level" type="Node"]
@@ -1256,11 +1255,11 @@ __meta__ = {
 [node name="CutscenePlayer" type="AnimationPlayer" parent="."]
 autoplay = "Menu"
 anims/GameOver = SubResource( 1 )
-anims/GameWon = SubResource( 12 )
-anims/Intro = SubResource( 2 )
-anims/Menu = SubResource( 3 )
-anims/QuickIntro = SubResource( 11 )
-anims/Setup = SubResource( 4 )
+anims/GameWon = SubResource( 2 )
+anims/Intro = SubResource( 3 )
+anims/Menu = SubResource( 4 )
+anims/QuickIntro = SubResource( 5 )
+anims/Setup = SubResource( 6 )
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
@@ -1270,7 +1269,7 @@ __meta__ = {
 }
 
 [node name="GroundScroller" type="TextureRect" parent="Control"]
-material = SubResource( 6 )
+material = SubResource( 8 )
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
@@ -1306,7 +1305,7 @@ position = Vector2( 240, 144 )
 
 [node name="Sprite" parent="YSort/Player" index="0"]
 animation = "default"
-frame = 1
+frame = 0
 playing = false
 
 [node name="PlayerUI" parent="YSort/Player/CanvasLayer" index="0"]
@@ -1338,19 +1337,19 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 152, 176 )
-shape = SubResource( 7 )
+shape = SubResource( 9 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 328, 176 )
-shape = SubResource( 8 )
+shape = SubResource( 10 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 240, 280 )
-shape = SubResource( 9 )
+shape = SubResource( 11 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 240, 72 )
-shape = SubResource( 10 )
+shape = SubResource( 12 )
 
 [node name="Witch" parent="." instance=ExtResource( 3 )]
 position = Vector2( 240, 44 )

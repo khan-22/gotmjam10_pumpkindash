@@ -1,7 +1,7 @@
 extends Node
 
 const level_scene = preload("res://scenes/world/level.tscn")
-const credits_scene = preload("res://scenes/game_won_credits.tscn")
+const credits_scene = preload("res://scenes/world/game_won_credits.tscn")
 var level
 
 var reset_count = 0

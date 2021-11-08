@@ -1,23 +1,23 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://sprites/ui/gametitle.png" type="Texture" id=1]
-[ext_resource path="res://sprites/ui/thanks.png" type="Texture" id=2]
-[ext_resource path="res://scenes/witch.tscn" type="PackedScene" id=3]
-[ext_resource path="res://sound/ProperHalloween2021_4.ogg" type="AudioStream" id=4]
-[ext_resource path="res://scenes/game_won_credits.gd" type="Script" id=5]
+[ext_resource path="res://sound/ProperHalloween2021_4.ogg" type="AudioStream" id=1]
+[ext_resource path="res://sprites/ui/gametitle.png" type="Texture" id=2]
+[ext_resource path="res://sprites/ui/thanks.png" type="Texture" id=3]
+[ext_resource path="res://scenes/witch/witch.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/world/game_won_credits.gd" type="Script" id=5]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 5 )
 
 [node name="gametitle" type="Sprite" parent="."]
 position = Vector2( 240, 64 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="thanks" type="Sprite" parent="."]
 position = Vector2( 240, 208 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
-[node name="Witch" parent="." instance=ExtResource( 3 )]
+[node name="Witch" parent="." instance=ExtResource( 4 )]
 position = Vector2( 360, 192 )
 scale = Vector2( 2, 2 )
 
@@ -25,7 +25,7 @@ scale = Vector2( 2, 2 )
 autoplay = "GameWon_Idle"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource( 1 )
 volume_db = -5.0
 autoplay = true
 
