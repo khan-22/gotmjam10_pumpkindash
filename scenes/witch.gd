@@ -183,15 +183,14 @@ func init_phase2():
 	pattern_head = 0
 	$BodyAnimationPlayer.play("Angry1")
 	$BodyAnimationPlayer.queue(current_idle)
-	left_claw.do_angry_fist()
-	right_claw.do_angry_fist()
-	
-	yield(left_claw, "attack_finished")
+	var fn1 = left_claw.do_angry_fist()
+	var fn2 = right_claw.do_angry_fist()
+	yield(fn1, "completed")
+	yield(fn2, "completed")
 	
 	$BodyAnimationPlayer.playback_speed = PATTTERN2_SPEED
 	left_claw.animation_speed = PATTTERN2_SPEED
 	right_claw.animation_speed = PATTTERN2_SPEED
-	
 	Events.emit_signal("start_phase2")
 	
 func init_phase3():
@@ -199,10 +198,10 @@ func init_phase3():
 	pattern_head = 0
 	$BodyAnimationPlayer.play("Angry2")
 	$BodyAnimationPlayer.queue(current_idle)
-	left_claw.do_angry_fist2()
-	right_claw.do_angry_fist2()
-	
-	yield(left_claw, "attack_finished")
+	var fn1 = left_claw.do_angry_fist2()
+	var fn2 = right_claw.do_angry_fist2()
+	yield(fn1, "completed")
+	yield(fn2, "completed")
 	
 	$BodyAnimationPlayer.playback_speed = PATTTERN3_SPEED
 	left_claw.animation_speed = PATTTERN3_SPEED
@@ -254,35 +253,37 @@ func wait(amount: float):
 func front_fire_left():
 	$BodyAnimationPlayer.play("DualSideAttack")
 	$BodyAnimationPlayer.queue(current_idle)
-	left_claw.do_front_attack(BulletFrontFire, $BulletManager/LeftSide, -(randi() % 9) * 8)
-	yield(left_claw, "attack_finished")
+	var fn = left_claw.do_front_attack(BulletFrontFire, $BulletManager/LeftSide, -(randi() % 9) * 8)
+	yield(fn, "completed")
 
 func front_fire_right():
 	$BodyAnimationPlayer.play("DualSideAttack")
 	$BodyAnimationPlayer.queue(current_idle)
-	right_claw.do_front_attack(BulletFrontFire, $BulletManager/RightSide, -(randi() % 9) * 8)
-	yield(right_claw, "attack_finished")
+	var fn = right_claw.do_front_attack(BulletFrontFire, $BulletManager/RightSide, -(randi() % 9) * 8)
+	yield(fn, "completed")
 	
 func front_fire_dual():
 	$BodyAnimationPlayer.play("DualSideAttack")
 	$BodyAnimationPlayer.queue(current_idle)
-	left_claw.do_front_attack(BulletFrontFire, $BulletManager/LeftSide, -(randi() % 9) * 8)
-	right_claw.do_front_attack(BulletFrontFire, $BulletManager/RightSide, -(randi() % 9) * 8)
-	yield(left_claw, "attack_finished")
+	var fn1 = left_claw.do_front_attack(BulletFrontFire, $BulletManager/LeftSide, -(randi() % 9) * 8)
+	var fn2 = right_claw.do_front_attack(BulletFrontFire, $BulletManager/RightSide, -(randi() % 9) * 8)
+	yield(fn1, "completed")
+	yield(fn2, "completed")
 	
 func side_skull_dual():
 	$BodyAnimationPlayer.play("DualSideAttack")
 	$BodyAnimationPlayer.queue(current_idle)
-	left_claw.do_side_attack(BulletSideDash, $BulletManager/LeftSide)
-	right_claw.do_side_attack(BulletSideDash, $BulletManager/RightSide)
-	yield(left_claw, "attack_finished")
+	var fn1 = left_claw.do_side_attack(BulletSideDash, $BulletManager/LeftSide)
+	var fn2 = right_claw.do_side_attack(BulletSideDash, $BulletManager/RightSide)
+	yield(fn1, "completed")
+	yield(fn2, "completed")
 
 func side_curve_dual():
 	$BodyAnimationPlayer.play("DualSideAttack")
 	$BodyAnimationPlayer.queue(current_idle)
-	left_claw.do_side_attack(BulletSideCurve, $BulletManager/LeftSide)
-	right_claw.do_side_attack(BulletSideCurve, $BulletManager/RightSide)
-	yield(left_claw, "attack_finished")
-	yield(get_tree().create_timer(0.05), "timeout")
+	var fn1 = left_claw.do_side_attack(BulletSideCurve, $BulletManager/LeftSide)
+	var fn2 = right_claw.do_side_attack(BulletSideCurve, $BulletManager/RightSide)
+	yield(fn1, "completed")
+	yield(fn2, "completed")
 
 ##########################

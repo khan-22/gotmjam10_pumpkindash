@@ -80,8 +80,10 @@ func set_health(value: int):
 func is_being_crushed():
 	return $Crushcast1.is_colliding() and $Crushcast2.is_colliding()
 
-func _on_DamageArea_area_entered(area):
-	do_take_damage()
+func _on_DamageArea_area_entered(area: Area2D):
+	# Must have bullet bit set
+	if area.collision_layer & 2:
+		do_take_damage()
 	
 func _on_PickupArea_area_entered(area):
 	match area.get_type():
