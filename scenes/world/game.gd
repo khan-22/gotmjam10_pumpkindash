@@ -30,7 +30,11 @@ func on_restart():
 	
 func on_credits():
 	level.queue_free()
-	var scene = credits_scene.instance()
-	add_child(scene)
-	scene.set_owner(get_owner())
+	
+	var credits = credits_scene.instance()
+	add_child(credits)
+	credits.set_owner(get_owner())
+	credits.connect("restart_game", self, "on_restart")
+	
+	level = credits
 	

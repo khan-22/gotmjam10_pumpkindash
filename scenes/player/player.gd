@@ -8,6 +8,9 @@ const MAX_HEALTH: int = 3
 const BLINK_PERIOD: float = 0.1
 const INVINCIBILITY_TIME: float = 3.0
 
+const HEALTH_SPAWN_RATE1 = 15
+const HEALTH_SPAWN_RATE2 = 25
+
 var health: int = MAX_HEALTH setget set_health
 var invincible: bool = false
 var blink_time: float = 0.0
@@ -39,13 +42,13 @@ func _physics_process(delta):
 	if health < MAX_HEALTH:
 		beg_timer += delta
 		if health == 1:
-			if beg_timer >= 5:
+			if beg_timer >= HEALTH_SPAWN_RATE1:
 				Events.emit_signal("spawn_health")
-				beg_timer -= 5
+				beg_timer -= HEALTH_SPAWN_RATE1
 		else:
-			if beg_timer >= 10:
+			if beg_timer >= HEALTH_SPAWN_RATE2:
 				Events.emit_signal("spawn_health")
-				beg_timer -= 10
+				beg_timer -= HEALTH_SPAWN_RATE2
 	else:
 		beg_timer = 0
 	
